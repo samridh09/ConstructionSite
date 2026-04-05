@@ -1,0 +1,100 @@
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+export const HeroBanner = () => {
+    return (
+        <section className="relative w-full h-screen overflow-hidden bg-black flex flex-col justify-center">
+            {/* Cinematic Background Image */}
+            <div className="absolute inset-0 z-0">
+                <Image 
+                    src="/scaffolding-workers.png" // Using building skeleton visual
+                    alt="Construction site skeleton"
+                    fill
+                    className="object-cover opacity-60 contrast-125"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
+            </div>
+
+            {/* Massive Brutalist Text */}
+            <div className="relative z-10 max-w-[1700px] mx-auto px-6 lg:px-12 w-full pt-20">
+                <motion.div 
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
+                    className="flex flex-col relative"
+                >
+                    <h1 className="text-[8.5vw] font-[1000] text-white leading-[0.8] tracking-tighter uppercase whitespace-nowrap">
+                        BUILDING STRENGTH
+                    </h1>
+                    
+                    <h1 className="text-[8.5vw] font-[1000] text-white leading-[0.8] tracking-tighter uppercase ml-[30vw] -mt-4">
+                        WITH INTEGRITY
+                    </h1>
+                </motion.div>
+            </div>
+
+            {/* Crossing Hazard Tapes */}
+            <div className="absolute bottom-[10%] left-0 w-full h-32 z-20 flex items-center justify-center pointer-events-none">
+                {/* Tape 1: Bowed Top-Left to Bottom-Right */}
+                <motion.div 
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    animate={{ 
+                        scaleX: 1, 
+                        opacity: 1,
+                        backgroundPosition: ["0px 0px", "120px 0px"] 
+                    }}
+                    transition={{ 
+                        scaleX: { duration: 1.5, delay: 0.8, ease: "easeOut" },
+                        opacity: { duration: 1.5, delay: 0.8 },
+                        backgroundPosition: { repeat: Infinity, duration: 2, ease: "linear" }
+                    }}
+                    className="absolute w-[140%] h-10 bg-[#FFD700] -rotate-6 shadow-2xl flex items-center overflow-hidden"
+                    style={{
+                        backgroundImage: `repeating-linear-gradient(
+                            45deg,
+                            #FFD700,
+                            #FFD700 30px,
+                            #000000 30px,
+                            #000000 60px
+                        )`,
+                        backgroundSize: "60px 60px",
+                        clipPath: "polygon(0 10%, 100% 0, 100% 90%, 0 100%)" // Subtle bow
+                    }}
+                />
+                
+                {/* Tape 2: Bowed Bottom-Left to Top-Right */}
+                <motion.div 
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    animate={{ 
+                        scaleX: 1, 
+                        opacity: 1,
+                        backgroundPosition: ["0px 0px", "-120px 0px"] 
+                    }}
+                    transition={{ 
+                        scaleX: { duration: 1.5, delay: 0.8, ease: "easeOut" },
+                        opacity: { duration: 1.5, delay: 0.8 },
+                        backgroundPosition: { repeat: Infinity, duration: 2, ease: "linear" }
+                    }}
+                    className="absolute w-[140%] h-10 bg-[#FFD700] rotate-6 shadow-2xl flex items-center overflow-hidden"
+                    style={{
+                        backgroundImage: `repeating-linear-gradient(
+                            -45deg,
+                            #FFD700,
+                            #FFD700 30px,
+                            #000000 30px,
+                            #000000 60px
+                        )`,
+                        backgroundSize: "60px 60px",
+                        clipPath: "polygon(0 0, 100% 10%, 100% 100%, 0 90%)" // Subtle bow
+                    }}
+                />
+            </div>
+
+            {/* Base Darkening Area */}
+            <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent z-10" />
+        </section>
+    );
+};
