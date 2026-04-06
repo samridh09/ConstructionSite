@@ -162,21 +162,32 @@ export default async function ProjectDetailsPage({ params }: { params: { slug: s
                   )}
                 </div>
               </div>
-
-              {/* Featured Image */}
-              <div className="relative h-[600px] w-full overflow-hidden bg-black border border-black/5 group">
-                {imageUrl && (
-                  <Image
-                    src={imageUrl}
-                    alt={project.title}
-                    fill
-                    className="object-cover grayscale hover:grayscale-0 transition-all duration-[2s] scale-105 group-hover:scale-100"
-                  />
-                )}
-                <div className="absolute inset-x-0 bottom-0 p-10 bg-linear-to-t from-black/80 to-transparent">
-                  <span className="text-[10px] font-black tracking-[0.4em] text-white opacity-50 uppercase">{project.category} Portfolio // {project.title}</span>
+              {/* Gallery Section - Multiple Images */}
+              {project?.gallery && project.gallery.length > 0 && (
+                <div className="pt-24 space-y-12">
+                  <div className="flex items-center gap-4">
+                    <div className="h-px flex-1 bg-black/10"></div>
+                    <h3 className="text-xl font-[1000] text-black tracking-widest uppercase mb-0 whitespace-nowrap">
+                        Project Gallery
+                    </h3>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {project.gallery.map((img, idx) => {
+                      const galleryUrl = urlFor(img).width(1200).height(800).url();
+                      return (
+                        <div key={idx} className="relative h-[400px] overflow-hidden group/gal">
+                          <Image
+                            src={galleryUrl}
+                            alt={`${project?.title || 'Project'} gallery image ${idx + 1}`}
+                            fill
+                            className="object-cover transition-transform duration-1000 group-hover/gal:scale-105"
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
           </div>

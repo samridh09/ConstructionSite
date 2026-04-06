@@ -53,6 +53,15 @@ export const project = defineType({
       },
     }),
     defineField({
+      name: 'gallery',
+      title: 'Project Gallery',
+      type: 'array',
+      of: [{ type: 'image' }],
+      options: {
+          layout: 'grid'
+      }
+    }),
+    defineField({
       name: 'featured',
       title: 'Featured',
       type: 'boolean',

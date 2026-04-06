@@ -57,5 +57,8 @@ export const getProjectBySlugQuery = groq`
     },
     featured,
     order,
+    gallery[] {
+      asset
+    }
   }
 `

@@ -23,4 +23,7 @@ export interface Project {
   }
   featured: boolean
   order?: number
+  gallery?: Array<{
+    asset: SanityImageAssetDocument
+  }>
 }
